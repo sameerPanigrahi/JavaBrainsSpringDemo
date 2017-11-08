@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd"> -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<context:annotation-config />
+
+	<!-- <bean id="triangle" class="org.not_imp.sameer.Triangle" scope="singleton"> -->
+	<!-- <constructor-arg> -->
+	<!-- <list> -->
+	<!-- <ref bean="zeroPoint"></ref> -->
+	<!-- <ref bean="point2"></ref> -->
+	<!-- <ref bean="point3"></ref> -->
+	<!-- </list> -->
+	<!-- </constructor-arg> -->
+	<!-- </bean> -->
+
+	<!-- <bean id="zeroPoint" class="org.not_imp.sameer.Point" scope="singleton"> -->
+	<!-- <property name="x" value="${initialX}"></property> -->
+	<!-- <property name="y" value="${initialY}"></property> -->
+	<!-- </bean> -->
+
+	<!-- <bean id="point2" class="org.not_imp.sameer.Point" parent="zeroPoint" -->
+	<!-- scope="singleton"> -->
+	<!-- <property name="x" value="-60"></property> -->
+	<!-- </bean> -->
+
+	<!-- <bean id="point3" class="org.not_imp.sameer.Point" parent="zeroPoint" -->
+	<!-- scope="singleton"> -->
+	<!-- <property name="y" value="-120"></property> -->
+	<!-- </bean> -->
+
+	<bean id="randomPoint" class="org.not_imp.sameer.Point" scope="singleton">
+		<qualifier value="circleRelated"></qualifier>
+		<property name="x" value="500"></property>
+		<property name="y" value="500"></property>
+	</bean>
+
+	<bean id="randomPoint2" class="org.not_imp.sameer.Point" scope="singleton">
+		<property name="x" value="500"></property>
+		<property name="y" value="500"></property>
+	</bean>
+
+	<bean id="circle" class="org.not_imp.sameer.Circle" scope="singleton">
+		<constructor-arg name="radius" value="5"></constructor-arg>
+	</bean>
+
+	<!-- <alias name="triangle" alias="triangle_alias" /> -->
+
+	<bean class="org.not_imp.sameer.MyBeanPostProcessor"></bean>
+
+	<bean class="org.not_imp.sameer.MyBeanPPFactory"></bean>
+
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations" value="pointsConfig.properties"></property>
+	</bean>
+
+	<bean
+		class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor">
+	</bean>
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>myMessages</value>
+			</list>
+		</property>
+	</bean>
+</beans>
